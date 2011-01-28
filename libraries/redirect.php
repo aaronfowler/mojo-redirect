@@ -5,14 +5,15 @@
  *
  * @package		MojoMotor
  * @subpackage	Addons
- * @version		1.0
+ * @version		1.1.0
  * @author		Aaron Fowler
  * @link		http://twitter.com/adfowler
  */
 class Redirect
 {
-	var $addon_version = '1.0';
+	var $addon_version = '1.1.0';
 	var $display_name = 'Redirect';
+	private $mojo;
 
 	// --------------------------------------------------------------------
 
@@ -24,7 +25,8 @@ class Redirect
 	 */
 	function __construct()
 	{
-		$this->CI =& get_instance();
+		$this->mojo =& get_instance();
+		$this->mojo->load->model('page_model');
 	}
 
 	// --------------------------------------------------------------------
@@ -39,9 +41,9 @@ class Redirect
 	 */
 	function page()
 	{
-		if ($page = $this->CI->mojomotor_parser->page->page_info)
+		if ($page_info = $this->mojo->page_model->get_page_by_url_title($this->mojo->mojomotor_parser->url_title))
 		{
-			$location = trim($page->meta_description);
+			$location = trim($page_info->meta_description);
 			if ($location != '')
 			{
 				header('Location: ' . $location); /* Redirect browser */

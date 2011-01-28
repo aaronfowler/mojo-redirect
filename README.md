@@ -1,10 +1,10 @@
 # Redirect
 
-Version: 1.0
+Version: 1.1.0
 
 Author: [Aaron Fowler](http://twitter.com/adfowler)
 
-Redirects from a MojoMotor page to an external site/page.
+Redirects from a MojoMotor page to an external site/page.  Allows you to have external links in your site's dynamic page lists.
 
 ##Installation
 
